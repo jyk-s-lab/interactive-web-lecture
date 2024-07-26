@@ -57,16 +57,25 @@
 </body>
 
 <script>
+  // 계속 찍어보고 시작, 끝 지점 적당히 정해서, 시선이 중간에 올때
   const listStyleChangeStartY = 373
   const listStyleChangeEndY = 1585
 
+
   const listItems = document.querySelectorAll('.list-item')
 
+  // NOTE: 범위 높이가 같으니까, 범위 높이/items 하면 대충 위치 나옴
   const division = (listStyleChangeEndY - listStyleChangeStartY) / listItems.length
 
+  
+
   window.addEventListener("scroll", () => {
+    console.log("window.scrollY", window.scrollY);
+
+    // NOTE: 선택되어 있던 item 있으면 제거
     if (document.getElementById("on")) document.getElementById("on").removeAttribute("id")
 
+    // NOTE: 스크롤 영역 안에 있으면 해당 item에 id 부여
     if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
       const targetIndex = Math.floor((window.scrollY - listStyleChangeStartY) / division) // 영상의 round가 아닌 floor를 사용한 이유는, 반올림이 아니라 내림이 필요하기 때문입니다!
 

@@ -114,10 +114,13 @@
     document.getElementById("video-section").style.height = videoElement.duration * videoPlayBack + "px";
   })
 
+  // NOTE: 설명 시작 지점
   const fixedDescriptionAppearTiming = 3470
   const fixedDescriptionAppearEnds = 3800
 
   window.addEventListener("scroll", () => {
+
+    console.log('window.scrollY', window.scrollY);
     if (document.getElementById("on")) document.getElementById("on").removeAttribute("id")
 
     if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
@@ -144,18 +147,27 @@
       fixedWrapper.style.top = "initial"
       fixedWrapper.style.left = "initial"
       fixedWrapper.style.transform = `translateY(${videoSection.offsetHeight - fixedWrapper.offsetHeight}px)`
+      console.log('1111');
     }
 
+    // NOTE: 설명 올라오기 시작함
     if (window.scrollY > fixedDescriptionAppearTiming && window.scrollY < fixedDescriptionAppearEnds) {
       fixedDescription.style.transform = `translateY(${fixedDescriptionAppearEnds - window.scrollY}px)`
 
       fixedDescription.style.opacity = (window.scrollY - fixedDescriptionAppearTiming) / 300
-    } else if (window.scrollY > fixedDescriptionAppearEnds) {
+      console.log('2222');
+    } 
+    // NOTE: 설명 고정
+    else if (window.scrollY > fixedDescriptionAppearEnds) {
       fixedDescription.style.transform = `translateY(0px)`
       fixedDescription.style.opacity = 1
-    } else {
+      console.log('3333');
+    } 
+    // NOTE: 
+    else {
       fixedDescription.style.transform = `translateY(100px)`
       fixedDescription.style.opacity = 0
+      console.log('44444');
     }
 
   })
